@@ -1,0 +1,48 @@
+.tile-can-container {
+  position: relative;
+  width: $tile-can-container-width;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -30%; // Tricky to get right, tweak manually until looks right.
+
+  @include bp($breakpoint-tile) {
+    margin-top: 0;
+    width: $tile-can-container-width-medium;
+  }
+
+  .can {
+    &-naked {
+      width: 50%;
+      height: auto;
+    }
+
+    &-label {
+      &-container {
+        overflow: hidden;
+        position: absolute;
+        width: 50%;
+        padding-top: 105%; // Tricky to get right, tweak manually until looks right.
+        transform: translateY(
+          4%
+        ); // Tricky to get right, tweak manually until looks right.
+
+        &:before {
+          @include pseudo-cover;
+          @include can-lighting(1);
+        }
+
+        &:after {
+          @include pseudo-cover;
+          @include can-lighting(-1);
+        }
+      }
+
+      &-image {
+        @include cover;
+        width: auto;
+        transform: translateX(-10%);
+      }
+    }
+  }
+}

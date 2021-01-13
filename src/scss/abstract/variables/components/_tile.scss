@@ -1,0 +1,14 @@
+// COLOR
+$color-tile-placeholder: #eff0f3;
+$color-tile-blob-default: #ff8e3c;
+$color-can-lighting: transparentize($color-white, 0.8);
+
+// DIMENSIONS
+$tile-can-container-width: 50%;
+$tile-can-container-width-medium: 33.3333%;
+$tile-content-container-width-medium: 100% - $tile-can-container-width-medium;
+$breakpoint-tile: 600px;
+
+// TYPOGRAPHY
+$font-size-tile-title: clamp(35px, 6vw, 80px);
+$font-size-tile-subtitle: clamp(20px, 3vw, 40px);

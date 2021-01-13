@@ -1,11 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Empty project</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div id="app"></div>
+    <main class="wrapper" style="scroll-snap-type: y mandatory">
+      <section class="section">
+        <div class="tile tile-1">
+          <div class="tile-can-container">
+            <img class="can-naked" src="./img/can-naked.png" alt="" />
+            <div class="can-label-container">
+              <img
+                class="can-label-image"
+                src="./img/labels/label-fatamorgana.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div class="tile-content">
+            <h2 class="tile-title">
+              <span class="js-tile-title">FATAMORGANA</span>
+            </h2>
+            <h3 class="tile-subtitle">
+              <span class="js-tile-subtitle">Quadruple India Pale Ale</span>
+            </h3>
+            <button class="tile-cta">Check it out!</button>
+          </div>
+
+          <div class="tile-background">
+            <div class="blob"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
     <script src="js/index.js"></script>
   </body>
 </html>
