@@ -1,7 +1,10 @@
 import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import Splitting from "splitting";
 import TileBackground from "./TileBackground";
 import prefersReducedMotion from "../helpers/prefersReducedMotion";
+
+gsap.registerPlugin(ScrollTrigger);
 
 class Tile {
   constructor(options) {
@@ -51,6 +54,14 @@ class Tile {
       paused: true,
       defaults: {
         ease: "power2.out",
+      },
+      scrollTrigger: {
+        trigger: this.containerEl,
+        start: "center 80%",
+        end: "center 20%",
+        toggleActions: "play none restart none",
+        onLeave: this.animateOut,
+        onLeaveBack: this.animateOut,
       },
     });
 
@@ -141,9 +152,11 @@ class Tile {
           // GSAP will translate our % based translation into px values.
           // This works fine but will break the positioning of the elements when resizing the window.
           // To fix this, we remove the inlined transform one the animation is done.
+          /*
           for (let i = 0; i < this.particlesEls.length; i++) {
             this.particlesEls[i].style.transform = "";
           }
+          */
         },
       },
       "start+=.25" // Relative to a label
@@ -154,6 +167,7 @@ class Tile {
     if (prefersReducedMotion()) {
       this.animation.progress(1);
     } else {
+      this.animation.timeScale(1);
       this.animation.play();
     }
   }
@@ -162,6 +176,7 @@ class Tile {
     if (prefersReducedMotion()) {
       this.animation.progress(0);
     } else {
+      this.animation.timeScale(2);
       this.animation.reverse();
     }
   }
