@@ -1,3 +1,5 @@
+$can-width: 50%;
+
 .tile-visual {
   position: relative;
   width: $tile-can-container-width;
@@ -14,7 +16,7 @@
   .can {
     &-container {
       display: block;
-      width: 50%;
+      width: $can-width;
     }
 
     &-body {
@@ -28,8 +30,8 @@
         overflow: hidden;
         position: absolute;
         top: 0;
-        width: 100%;
-        padding-top: 210%; // Tricky to get right, tweak manually until looks right.
+        width: $can-width;
+        padding-top: 105%; // Tricky to get right, tweak manually until looks right.
         transform: translateY(
           15%
         ); // Tricky to get right, tweak manually until looks right.
@@ -48,29 +50,41 @@
       &-image {
         @include cover;
         width: auto;
-        // transform: translateX(-10%);
+        transform: translateX(-10%);
       }
     }
   }
 
   .particle {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: contain;
 
     &-1 {
-      transform: translate(-145%, -50%) scale(0.4) rotate(-25deg);
+      transform: translate(-60%, 20%) scale(0.5) rotate(-40deg);
     }
 
     &-2 {
-      transform: translate(50%, -100%) scale(0.5) rotate(30deg);
+      transform: translate(90%, -70%) scale(0.9) rotate(35deg);
     }
 
     &-3 {
-      transform: translate(25%, 0%) scale(0.75) rotate(-15deg);
+      transform: translate(70%, 50%) scale(0.8) rotate(0deg);
     }
+  }
+
+  .ingredient {
+    width: $can-width;
+    padding-top: $can-width;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }

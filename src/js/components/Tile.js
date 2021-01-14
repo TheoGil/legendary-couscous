@@ -1,7 +1,6 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Splitting from "splitting";
-import imagesLoaded from "imagesloaded";
 import TileBackground from "./TileBackground";
 import prefersReducedMotion from "../helpers/prefersReducedMotion";
 
@@ -11,9 +10,7 @@ class Tile {
   constructor(options) {
     this.containerEl = options.element;
 
-    this.animateIn = this.animateIn.bind(this);
     this.replay = this.replay.bind(this);
-    this.initStartAnimation = this.initStartAnimation.bind(this);
 
     this.init();
   }
@@ -40,10 +37,7 @@ class Tile {
 
     this.replayBtnEl.addEventListener("click", this.replay);
 
-    // Since the particles animation is using percentage based translations and because
-    // this percentage is based on the dimensions of the image, we must wait for the particle
-    // images to load before registering the tween. Otherwise, it will messes up positioning.
-    imagesLoaded(this.containerEl, this.initStartAnimation);
+    this.initStartAnimation();
   }
 
   initStartAnimation() {
@@ -89,7 +83,6 @@ class Tile {
       },
       "start"
     );
-
     // Animate title characters individually
     this.animation.fromTo(
       this.splitting[0].chars,
@@ -138,9 +131,10 @@ class Tile {
     this.animation.from(
       this.particlesEls,
       {
-        y: "-50%",
-        x: "-50%",
-        rotate: "0deg",
+        x: 0,
+        y: 0,
+        rotate: 0,
+        scale: 0.2,
         ease: "power4.out",
         duration: 0.75,
         stagger: 0.05,
@@ -152,20 +146,11 @@ class Tile {
       },
       "start+=.25"
     );
-
     // Animate in the replay bouton
     this.animation.from(this.replayBtnEl, {
       opacity: "0",
       duration: 0.5,
     });
-  }
-
-  animateIn(delay) {
-    if (prefersReducedMotion()) {
-      this.animation.progress(1);
-    } else {
-      this.animation.delay(delay).timeScale(1).restart(true);
-    }
   }
 
   replay() {
@@ -174,7 +159,11 @@ class Tile {
         .timeScale(2)
         .reverse()
         .then(() => {
-          this.animateIn(0.5);
+          if (prefersReducedMotion()) {
+            this.animation.progress(1);
+          } else {
+            this.animation.delay(0.5).timeScale(1).restart(true);
+          }
         });
     }
   }
