@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import Splitting from "splitting";
 import TileBackground from "./TileBackground";
+import prefersReducedMotion from "../helpers/prefersReducedMotion";
 
 class Tile {
   constructor(options) {
@@ -46,7 +47,7 @@ class Tile {
 
   initStartAnimation() {
     // Define the various animations
-    this.animationIn = new gsap.timeline({
+    this.animation = new gsap.timeline({
       paused: true,
       defaults: {
         ease: "power2.out",
@@ -54,7 +55,7 @@ class Tile {
     });
 
     // Animate in the blob background
-    this.animationIn.to(
+    this.animation.to(
       this.blob,
       {
         progress: 1,
@@ -66,7 +67,7 @@ class Tile {
     );
 
     // Animate in the can
-    this.animationIn.fromTo(
+    this.animation.fromTo(
       [this.canEl, this.labelEl],
       {
         x: (i, el) => (el.isSameNode(this.labelEl) ? "-50%" : "-100%"),
@@ -83,7 +84,7 @@ class Tile {
     );
 
     // Animate title characters individually
-    this.animationIn.fromTo(
+    this.animation.fromTo(
       this.splitting[0].chars,
       {
         y: "100%",
@@ -98,7 +99,7 @@ class Tile {
 
     // Animate subtitle characters individually
     // Starts a tiny bit after the main title animation
-    this.animationIn.fromTo(
+    this.animation.fromTo(
       this.splitting[1].chars,
       {
         y: "100%",
@@ -112,7 +113,7 @@ class Tile {
     );
 
     // Animate in the CTA
-    this.animationIn.fromTo(
+    this.animation.fromTo(
       this.CTAEl,
       {
         y: "100%",
@@ -127,7 +128,7 @@ class Tile {
     );
 
     // Animate in the "particles"
-    this.animationIn.from(
+    this.animation.from(
       this.particlesEls,
       {
         y: "-50%",
@@ -142,11 +143,19 @@ class Tile {
   }
 
   animateIn() {
-    this.animationIn.play();
+    if (prefersReducedMotion()) {
+      this.animation.progress(1);
+    } else {
+      this.animation.play();
+    }
   }
 
   animateOut() {
-    this.animationIn.reverse();
+    if (prefersReducedMotion()) {
+      this.animation.progress(0);
+    } else {
+      this.animation.play();
+    }
   }
 }
 
