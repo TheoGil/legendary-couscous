@@ -1,37 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Empty project</title>
+    <title>🍺</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <main class="wrapper" style="scroll-snap-type: y mandatory">
+    <main class="wrapper">
       <section class="section">
-        <div class="tile tile-1">
-          <div class="tile-can-container">
-            <img class="can-naked" src="./img/can-naked.png" alt="" />
-            <div class="can-label-container">
+        <div class="tile tile-1 js-tile">
+          <div class="tile-visual">
+            <div class="can-container js-can">
+              <img class="can-body" src="./img/can-naked.png" alt="" />
+
+              <div class="can-label-container">
+                <img
+                  class="can-label-image js-can-label"
+                  src="./img/labels/label-fatamorgana.jpg"
+                  alt=""
+                />
+              </div>
+
               <img
-                class="can-label-image"
-                src="./img/labels/label-fatamorgana.jpg"
+                class="particle particle-1 js-particle"
+                src="./img/hop-1.png"
+                alt=""
+              />
+              <img
+                class="particle particle-2 js-particle"
+                src="./img/hop-2.png"
+                alt=""
+              />
+              <img
+                class="particle particle-3 js-particle"
+                src="./img/hop-3.png"
                 alt=""
               />
             </div>
           </div>
 
           <div class="tile-content">
-            <h2 class="tile-title">
-              <span class="js-tile-title">FATAMORGANA</span>
-            </h2>
-            <h3 class="tile-subtitle">
-              <span class="js-tile-subtitle">Quadruple India Pale Ale</span>
+            <h2 class="tile-title js-title clip">FATAMORGANA</h2>
+            <h3 class="tile-subtitle js-subtitle clip">
+              Quadruple India Pale Ale
             </h3>
-            <button class="tile-cta">Check it out!</button>
+            <button class="tile-cta js-cta">Check it out!</button>
+
+            <div style="position: absolute; right: 25px; bottom: 25px">
+              <button class="js-animate-in">Animate In</button>
+              <button class="js-animate-out">Animate Out</button>
+            </div>
           </div>
 
           <div class="tile-background">
-            <div class="blob"></div>
+            <svg
+              class="blob"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <path class="js-svg-path" d="" />
+            </svg>
           </div>
         </div>
       </section>

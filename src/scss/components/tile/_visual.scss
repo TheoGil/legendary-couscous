@@ -1,4 +1,4 @@
-.tile-can-container {
+.tile-visual {
   position: relative;
   width: $tile-can-container-width;
   display: flex;
@@ -12,8 +12,14 @@
   }
 
   .can {
-    &-naked {
+    &-container {
+      display: block;
       width: 50%;
+    }
+
+    &-body {
+      display: block;
+      width: 100%;
       height: auto;
     }
 
@@ -21,10 +27,11 @@
       &-container {
         overflow: hidden;
         position: absolute;
-        width: 50%;
-        padding-top: 105%; // Tricky to get right, tweak manually until looks right.
+        top: 0;
+        width: 100%;
+        padding-top: 210%; // Tricky to get right, tweak manually until looks right.
         transform: translateY(
-          4%
+          15%
         ); // Tricky to get right, tweak manually until looks right.
 
         &:before {
@@ -41,8 +48,29 @@
       &-image {
         @include cover;
         width: auto;
-        transform: translateX(-10%);
+        // transform: translateX(-10%);
       }
+    }
+  }
+
+  .particle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    width: 100%;
+    height: auto;
+
+    &-1 {
+      transform: translate(-145%, -50%) scale(0.4) rotate(-25deg);
+    }
+
+    &-2 {
+      transform: translate(50%, -100%) scale(0.5) rotate(30deg);
+    }
+
+    &-3 {
+      transform: translate(25%, 0%) scale(0.75) rotate(-15deg);
     }
   }
 }

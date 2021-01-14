@@ -1,2 +1,6 @@
 import "./../scss/styles.scss";
-console.log("hello world!");
+import Tile from "./components/Tile";
+
+new Tile({
+  element: document.querySelector(".js-tile"),
+});
