@@ -25,31 +25,72 @@
         <li class="tile tile-1 js-tile">
           <div class="tile-visual">
             <div class="can-container js-can">
-              <img class="can-body" src="./img/can-naked.png" alt="" />
+              <picture>
+                <source srcset="./img/can-body.webp" type="image/webp" />
+                <source srcset="./img/can-body.png" type="image/png" />
+                <!-- Note: the alt attribute is purposefully left empty as this image is purely decorative and does not convey any information. -->
+                <img
+                  class="can-body"
+                  src="./img/can-body.png"
+                  alt=""
+                  loading="lazy"
+                />
+              </picture>
 
               <div class="can-label-container">
-                <img
-                  class="can-label-image js-can-label"
-                  src="./img/labels/label-fatamorgana.jpg"
-                  alt=""
-                />
+                <picture>
+                  <source
+                    srcset="./img/labels/label-fatamorgana.webp"
+                    type="image/webp"
+                  />
+                  <source
+                    srcset="./img/labels/label-fatamorgana.jpg"
+                    type="image/png"
+                  />
+                  <img
+                    class="can-label-image js-can-label"
+                    src="./img/labels/label-fatamorgana.jpg"
+                    alt="Label of the Fatamorgana beer"
+                    loading="lazy"
+                  />
+                </picture>
               </div>
 
-              <img
-                class="particle particle-1 js-particle"
-                src="./img/hop-1.png"
-                alt=""
-              />
-              <img
-                class="particle particle-2 js-particle"
-                src="./img/hop-2.png"
-                alt=""
-              />
-              <img
-                class="particle particle-3 js-particle"
-                src="./img/hop-3.png"
-                alt=""
-              />
+              <picture>
+                <source srcset="./img/hop-1.webp" type="image/webp" />
+                <source srcset="./img/hop-1.png" type="image/png" />
+                <!-- Note: the alt attribute is purposefully left empty as this image is purely decorative and does not convey any information. -->
+                <img
+                  class="particle particle-1 js-particle"
+                  src="./img/hop-1.png"
+                  alt=""
+                  loading="lazy"
+                />
+              </picture>
+
+              <picture>
+                <source srcset="./img/hop-2.webp" type="image/webp" />
+                <source srcset="./img/hop-2.png" type="image/png" />
+                <!-- Note: the alt attribute is purposefully left empty as this image is purely decorative and does not convey any information. -->
+                <img
+                  class="particle particle-2 js-particle"
+                  src="./img/hop-2.png"
+                  alt=""
+                  loading="lazy"
+                />
+              </picture>
+
+              <picture>
+                <source srcset="./img/hop-3.webp" type="image/webp" />
+                <source srcset="./img/hop-3.png" type="image/png" />
+                <!-- Note: the alt attribute is purposefully left empty as this image is purely decorative and does not convey any information. -->
+                <img
+                  class="particle particle-3 js-particle"
+                  src="./img/hop-3.png"
+                  alt=""
+                  loading="lazy"
+                />
+              </picture>
             </div>
           </div>
 
