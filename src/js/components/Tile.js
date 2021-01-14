@@ -137,6 +137,14 @@ class Tile {
         ease: "power4.out",
         duration: 0.75,
         stagger: 0.05,
+        onComplete: () => {
+          // GSAP will translate our % based translation into px values.
+          // This works fine but will break the positioning of the elements when resizing the window.
+          // To fix this, we remove the inlined transform one the animation is done.
+          for (let i = 0; i < this.particlesEls.length; i++) {
+            this.particlesEls[i].style.transform = "";
+          }
+        },
       },
       "start+=.25" // Relative to a label
     );
@@ -154,7 +162,7 @@ class Tile {
     if (prefersReducedMotion()) {
       this.animation.progress(0);
     } else {
-      this.animation.play();
+      this.animation.reverse();
     }
   }
 }
