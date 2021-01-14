@@ -38,17 +38,96 @@
     font-weight: 400;
     font-size: $font-size-tile-subtitle;
     line-height: 1;
-    margin: 0 0 0.5em 0;
+    margin: 0 0 1em 0;
+
+    @include bp($breakpoint-tile) {
+      margin-bottom: 0.5em;
+    }
   }
 
   &-cta {
+    position: relative;
     background-color: transparent;
     border-width: 0;
     text-transform: uppercase;
     cursor: pointer;
     border: 1px currentColor solid;
-    padding: 10px 25px;
+    padding: 10px calc(25px + 3em) 10px 25px;
     border-radius: 10px;
+
+    &-icon-container {
+      position: absolute;
+      right: 15px;
+      top: -0.75em;
+
+      .line {
+        position: absolute;
+        background-color: currentColor;
+        height: 1px;
+        bottom: 0;
+        transform: rotate(var(--rotation)) scaleX(0);
+        transition: transform 100ms ease-out;
+        transform-origin: 0 0;
+
+        &-1 {
+          --rotation: 120deg;
+          left: 35%;
+          width: 1.25em;
+        }
+
+        &-2 {
+          --rotation: 90deg;
+          left: 50%;
+          width: 1.75em;
+          transition-delay: 50ms;
+        }
+
+        &-3 {
+          --rotation: 60deg;
+          left: 65%;
+          width: 1.25em;
+          transition-delay: 100ms;
+        }
+      }
+    }
+
+    &-lid {
+      width: 3em;
+      height: 3em;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 5;
+
+      .closed-hole {
+        fill: var(--color-surface);
+        transition: 30ms transform ease-out;
+        transform-origin: 50% 50%;
+      }
+
+      .opened-hole {
+        fill: currentColor;
+      }
+
+      .strip {
+        fill: var(--color-surface);
+        transform-origin: 50% 50%;
+        transition: 30ms transform ease-out;
+      }
+    }
+
+    &:active {
+      .strip {
+        transform: scaleY(0.75);
+      }
+
+      .closed-hole {
+        transform: scaleY(0.5);
+      }
+
+      .line {
+        transform: rotate(var(--rotation)) scaleX(1);
+      }
+    }
   }
 
   &-background {
