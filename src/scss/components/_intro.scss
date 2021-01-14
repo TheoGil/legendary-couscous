@@ -1,0 +1,16 @@
+.intro {
+  margin-top: clamp(60px, 15vw, 220px);
+  margin-bottom: clamp(60px, 10vw, 150px);
+
+  &-title {
+    font-size: $font-size-tile-title;
+    line-height: 1;
+    margin: 0 0 0.5em 0;
+    color: $color-font-headings;
+  }
+
+  &-text {
+    margin-top: 0;
+    font-size: $font-size-tile-subtitle;
+  }
+}

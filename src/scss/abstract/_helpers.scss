@@ -6,3 +6,11 @@
 .char {
   display: inline-block;
 }
+
+.hide-small {
+  display: none;
+
+  @include bp($breakpoint-medium) {
+    display: block;
+  }
+}

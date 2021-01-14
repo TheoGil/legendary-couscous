@@ -1,4 +1,36 @@
-@import "./color";
-@import "./dimensions";
-@import "./typography";
-@import "./components/tile";
+/**
+ * COLORS
+ */
+$color-white: #ffffff;
+$color-surface: #fffffe;
+$color-font-headings: #272343;
+$color-font-body: #2d334a;
+$color-placeholder: #e3f6f5;
+$color-surface-button: #ffd803;
+$color-font-button: $color-font-headings;
+$color-tile-placeholder: $color-white;
+$color-tile-blob-default: #eff0f3;
+$color-can-lighting: transparentize($color-white, 0.8);
+
+/**
+ * TYPOGRAPHY
+ */
+$font-family-body: "woodchuck", sans-serif;
+$font-family-heading: $font-family-body;
+$font-size-tile-title: clamp(35px, 6vw, 80px);
+$font-size-tile-subtitle: clamp(20px, 3vw, 40px);
+
+/**
+ * DIMENSIONS
+ */
+$wrapper-max-width: 1250px;
+$gutter: 25px;
+$tile-can-container-width: 50%;
+$tile-can-container-width-medium: 33.3333%;
+$tile-content-container-width-medium: 100% - $tile-can-container-width-medium;
+
+/**
+ * BREAKPOINTS
+ */
+$breakpoint-medium: 750px;
+$breakpoint-tile: 600px;

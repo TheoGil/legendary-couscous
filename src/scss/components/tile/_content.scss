@@ -2,7 +2,9 @@
   // Default background blob color, this should be overriden for every tile
   --color-surface: #{$color-tile-blob-default};
 
+  grid-column: 1 / -1;
   width: 100%;
+  margin-top: 28vw; // Prevent can from overlapping previous tiles. Arbitrary value, tweak until look right
   position: relative;
   display: flex;
   flex-direction: column;
@@ -11,6 +13,11 @@
   @include bp($breakpoint-tile) {
     flex-direction: row;
     height: 400px;
+    margin: 0;
+  }
+
+  @include bp($breakpoint-medium) {
+    margin: min(6vw, 100px) 0; // Prevent can from overlapping previous tiles. Arbitrary value, tweak until look right
   }
 
   &-content {
@@ -47,12 +54,13 @@
 
   &-cta {
     position: relative;
-    background-color: transparent;
+    padding: 10px calc(25px + 3em) 10px 25px;
+    background-color: $color-surface-button;
+    color: $color-font-button;
     border-width: 0;
     text-transform: uppercase;
     cursor: pointer;
     border: 1px currentColor solid;
-    padding: 10px calc(25px + 3em) 10px 25px;
     border-radius: 10px;
 
     &-icon-container {
@@ -99,7 +107,7 @@
       stroke-width: 5;
 
       .closed-hole {
-        fill: var(--color-surface);
+        fill: $color-surface-button;
         transition: 30ms transform ease-out;
         transform-origin: 50% 50%;
       }
@@ -109,7 +117,7 @@
       }
 
       .strip {
-        fill: var(--color-surface);
+        fill: $color-surface-button;
         transform-origin: 50% 50%;
         transition: 30ms transform ease-out;
       }
@@ -140,7 +148,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: $color-tile-placeholder;
+    background-color: $color-placeholder;
 
     .blob {
       position: absolute;
@@ -154,6 +162,6 @@
   }
 
   &-1 {
-    --color-surface: #9186ff;
+    --color-surface: #bae8e8;
   }
 }
