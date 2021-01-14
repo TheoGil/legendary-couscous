@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Splitting from "splitting";
+import imagesLoaded from "imagesloaded";
 import TileBackground from "./TileBackground";
 import prefersReducedMotion from "../helpers/prefersReducedMotion";
 
@@ -12,6 +13,7 @@ class Tile {
 
     this.animateIn = this.animateIn.bind(this);
     this.replay = this.replay.bind(this);
+    this.initStartAnimation = this.initStartAnimation.bind(this);
 
     this.init();
   }
@@ -36,9 +38,12 @@ class Tile {
       target: [this.titleEl, this.subtitleEl],
     });
 
-    this.initStartAnimation();
-
     this.replayBtnEl.addEventListener("click", this.replay);
+
+    // Since the particles animation is using percentage based translations and because
+    // this percentage is based on the dimensions of the image, we must wait for the particle
+    // images to load before registering the tween. Otherwise, it will messes up positioning.
+    imagesLoaded(this.containerEl, this.initStartAnimation);
   }
 
   initStartAnimation() {
@@ -139,18 +144,13 @@ class Tile {
         ease: "power4.out",
         duration: 0.75,
         stagger: 0.05,
-        onComplete: () => {
-          // GSAP will translate our % based translation into px values.
-          // This works fine but will break the positioning of the elements when resizing the window.
-          // To fix this, we remove the inlined transform one the animation is done.
-          /*
-          for (let i = 0; i < this.particlesEls.length; i++) {
-            this.particlesEls[i].style.transform = "";
-          }
-          */
-        },
+        // GSAP will translate our % based translation into px values.
+        // This works fine but will break the positioning of the elements when resizing the window.
+        // To fix this, we clear the inlined transform once animation is finished
+        // note: "transform" (or any transform-related property) clears all transforms
+        clearProps: "transform",
       },
-      "start+=.25" // Relative to a label
+      "start+=.25"
     );
 
     // Animate in the replay bouton
