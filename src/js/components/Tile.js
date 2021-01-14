@@ -11,7 +11,7 @@ class Tile {
     this.containerEl = options.element;
 
     this.animateIn = this.animateIn.bind(this);
-    this.animateOut = this.animateOut.bind(this);
+    this.replay = this.replay.bind(this);
 
     this.init();
   }
@@ -24,6 +24,7 @@ class Tile {
     this.canEl = this.containerEl.querySelector(".js-can");
     this.labelEl = this.containerEl.querySelector(".js-can-label");
     this.particlesEls = this.containerEl.querySelectorAll(".js-particle");
+    this.replayBtnEl = this.containerEl.querySelector(".js-replay-btn");
 
     // Helper wrapper that will handle the background blob animation
     this.blob = new TileBackground({
@@ -37,15 +38,7 @@ class Tile {
 
     this.initStartAnimation();
 
-    // DEBUG
-    this.containerEl
-      .querySelector(".js-animate-in")
-      .addEventListener("click", this.animateIn);
-
-    // DEBUG
-    this.containerEl
-      .querySelector(".js-animate-out")
-      .addEventListener("click", this.animateOut);
+    this.replayBtnEl.addEventListener("click", this.replay);
   }
 
   initStartAnimation() {
@@ -59,9 +52,7 @@ class Tile {
         trigger: this.containerEl,
         start: "center 80%",
         end: "center 20%",
-        toggleActions: "play none restart none",
-        onLeave: this.animateOut,
-        onLeaveBack: this.animateOut,
+        toggleActions: "play none none none",
       },
     });
 
@@ -120,7 +111,7 @@ class Tile {
         duration: 0.2,
         stagger: 0.025,
       },
-      "start+=.25" // Relative to a label
+      "start"
     );
 
     // Animate in the CTA
@@ -161,23 +152,30 @@ class Tile {
       },
       "start+=.25" // Relative to a label
     );
+
+    // Animate in the replay bouton
+    this.animation.from(this.replayBtnEl, {
+      opacity: "0",
+      duration: 0.5,
+    });
   }
 
-  animateIn() {
+  animateIn(delay) {
     if (prefersReducedMotion()) {
       this.animation.progress(1);
     } else {
-      this.animation.timeScale(1);
-      this.animation.play();
+      this.animation.delay(delay).timeScale(1).restart(true);
     }
   }
 
-  animateOut() {
-    if (prefersReducedMotion()) {
-      this.animation.progress(0);
-    } else {
-      this.animation.timeScale(2);
-      this.animation.reverse();
+  replay() {
+    if (!prefersReducedMotion()) {
+      this.animation
+        .timeScale(2)
+        .reverse()
+        .then(() => {
+          this.animateIn(0.5);
+        });
     }
   }
 }

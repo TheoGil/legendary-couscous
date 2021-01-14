@@ -161,6 +161,30 @@
     }
   }
 
+  &-replay-btn {
+    position: absolute;
+    right: $gutter;
+    bottom: $gutter;
+    border-width: 0;
+    background-color: transparent;
+    cursor: pointer;
+
+    &-icon {
+      width: 2em;
+      height: 2em;
+      fill: $color-font-body;
+      transition: transform 0.25s ease-in;
+    }
+
+    &:hover,
+    &:focus {
+      .tile-replay-btn-icon {
+        transition: transform 0.5s ease-out;
+        transform: rotate(-360deg);
+      }
+    }
+  }
+
   &-1 {
     --color-surface: #bae8e8;
   }
