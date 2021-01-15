@@ -3,6 +3,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import Splitting from "splitting";
 import TileBackground from "./TileBackground";
 import prefersReducedMotion from "../helpers/prefersReducedMotion";
+import canOpeningSound from "../../audio/can-opening.mp3";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,7 +11,10 @@ class Tile {
   constructor(options) {
     this.containerEl = options.element;
 
+    this.sound = true;
+
     this.replay = this.replay.bind(this);
+    this.onClick = this.onClick.bind(this);
 
     this.init();
   }
@@ -36,8 +40,10 @@ class Tile {
     });
 
     this.replayBtnEl.addEventListener("click", this.replay);
+    this.CTAEl.addEventListener("click", this.onClick);
 
     this.initAnimation();
+    this.initAudio();
   }
 
   initAnimation() {
@@ -176,6 +182,30 @@ class Tile {
     });
   }
 
+  initAudio() {
+    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    this.audioBuffer = null;
+
+    const request = new XMLHttpRequest();
+
+    request.open("GET", canOpeningSound, true);
+    request.responseType = "arraybuffer";
+
+    request.onload = () => {
+      this.audioCtx.decodeAudioData(
+        request.response,
+        (buffer) => {
+          this.audioBuffer = buffer;
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+    };
+
+    request.send();
+  }
+
   replay() {
     if (!prefersReducedMotion()) {
       this.animation
@@ -189,6 +219,19 @@ class Tile {
           }
         });
     }
+  }
+
+  onClick() {
+    if (this.audioBuffer !== null && this.sound === true) {
+      const source = this.audioCtx.createBufferSource();
+      source.buffer = this.audioBuffer;
+      source.connect(this.audioCtx.destination);
+      source.start(0);
+    }
+  }
+
+  setSound(sound) {
+    this.sound = sound;
   }
 }
 

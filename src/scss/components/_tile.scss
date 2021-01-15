@@ -178,6 +178,12 @@
     border: 1px currentColor solid;
     border-radius: $cta-border-radius;
 
+    &__icon {
+      position: absolute;
+      right: 15px;
+      top: -0.75em;
+    }
+
     &::before,
     &::after {
       @include pseudo-cover;
@@ -195,12 +201,6 @@
       // Applying transforms on the parent element causes stacking issues, making ::before appearing in front of the background
       // I'm fixing this by using the ::after to act as the button background
       background-color: $color-surface-button;
-    }
-
-    &__icon {
-      position: absolute;
-      right: 15px;
-      top: -0.75em;
     }
 
     &:hover {
@@ -226,8 +226,6 @@
       }
     }
 
-    /*
-    // ON CLICK VIA JS
     &:focus {
       .can-lid__strip {
         transform: scaleY(0.75);
@@ -243,7 +241,6 @@
         transform: rotate(var(--rotation)) scaleX(1);
       }
     }
-    */
   }
 
   &__background {

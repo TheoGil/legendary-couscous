@@ -1,0 +1,36 @@
+.toggle-sound-button {
+  position: fixed;
+  bottom: $gutter;
+  left: $gutter;
+  background-color: transparent;
+  border-width: 0;
+  padding: 10px;
+  cursor: pointer;
+  color: $color-font-body;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: transparentize($color-font-body, 0.9);
+  }
+
+  &__icon {
+    fill: currentColor;
+    display: block;
+    width: 2em;
+    height: 2em;
+  }
+
+  .sound-off {
+    display: none;
+  }
+
+  &--muted {
+    .sound-on {
+      display: none;
+    }
+
+    .sound-off {
+      display: block;
+    }
+  }
+}
