@@ -71,12 +71,34 @@ class Tile {
     this.animation.fromTo(
       [this.canEl, this.labelEl],
       {
-        x: (i, el) => (el.isSameNode(this.labelEl) ? "-50%" : "-100%"),
+        x: (i, el) => {
+          const rtl = this.containerEl.classList.contains("js-rtl");
+
+          if (el.isSameNode(this.labelEl)) {
+            if (rtl) {
+              return "100%";
+            } else {
+              return "-100%";
+            }
+          }
+
+          return rtl ? "100%" : "-100%";
+        },
         opacity: 0,
       },
       {
         y: "+=0", // Prevent GSAP from overiding translateY defined in CSS on labelContainerEl
-        x: (i, el) => (el.isSameNode(this.labelEl) ? "-10%" : "0%"),
+        x: (i, el) => {
+          if (el.isSameNode(this.labelEl)) {
+            if (this.containerEl.classList.contains("js-rtl")) {
+              return "-55%";
+            } else {
+              return "-25%";
+            }
+          }
+
+          return "0%";
+        },
         opacity: 1,
         ease: "power4.out",
         duration: 1.5,

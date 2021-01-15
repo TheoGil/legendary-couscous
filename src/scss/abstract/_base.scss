@@ -3,4 +3,5 @@ body {
   font-family: $font-family-body;
   background-color: $color-surface;
   color: $color-font-body;
+  overflow-x: hidden; // Prevent the animated tile elements from adding a vertical scrollbar
 }

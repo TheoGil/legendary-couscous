@@ -1,6 +1,4 @@
 import "./../scss/styles.scss";
-import Tile from "./components/Tile";
+import TileFactory from "./components/TileFactory";
 
-new Tile({
-  element: document.querySelector(".js-tile"),
-});
+new TileFactory();

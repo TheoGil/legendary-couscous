@@ -1,7 +1,4 @@
 .tile {
-  // Default background blob color, this should be overriden for every tile
-  --color-surface: #{$color-tile-blob-default};
-
   width: 100%;
   min-height: 300px;
 
@@ -27,8 +24,17 @@
       margin: min(6vw, 100px) 0; // Prevent can from overlapping sibling tiles. Arbitrary value, tweak until look right
     }
 
-    &--1 {
-      --color-surface: #bae8e8;
+    &--rtl {
+      // background-color: red;
+
+      @include bp($breakpoint-tile) {
+        flex-direction: row-reverse; // On larger screens align children horizontally right to left
+      }
+
+      .tile__replay-btn {
+        right: unset;
+        left: $gutter;
+      }
     }
   }
 
@@ -108,6 +114,18 @@
 
       &-3 {
         transform: translate(70%, 50%) scale(0.8) rotate(0deg);
+      }
+
+      &-4 {
+        transform: translate(65%, 30%) rotate(149deg) scale(0.7);
+      }
+
+      &-5 {
+        transform: translate(-86%, -30%) rotate(30deg) scale(0.5);
+      }
+
+      &-6 {
+        transform: translate(-100%, 80%) rotate(57deg) scale(0.85);
       }
     }
 
@@ -251,7 +269,7 @@
       width: 100%;
       height: 100%;
       z-index: 10;
-      fill: var(--color-surface);
+      fill: $color-tile-background;
     }
   }
 
