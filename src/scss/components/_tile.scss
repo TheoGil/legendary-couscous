@@ -25,15 +25,8 @@
     }
 
     &--rtl {
-      // background-color: red;
-
       @include bp($breakpoint-tile) {
         flex-direction: row-reverse; // On larger screens align children horizontally right to left
-      }
-
-      .tile__replay-btn {
-        right: unset;
-        left: $gutter;
       }
     }
   }
@@ -279,8 +272,8 @@
 
   &__replay-btn {
     position: absolute;
-    right: $gutter;
-    bottom: $gutter;
+    right: 0;
+    top: calc(100% + #{$gutter});
     border-width: 0;
     background-color: transparent;
     cursor: pointer;
@@ -289,8 +282,8 @@
     border-radius: 10px;
 
     &__icon {
-      width: 2em;
-      height: 2em;
+      width: 1.5em;
+      height: 1.5em;
       fill: currentColor;
       transition: transform 0.25s ease-in;
     }
