@@ -141,7 +141,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    z-index: 1; // Prevent the cta pseudo element from disapearing behind the blob SVG
 
     @include bp($breakpoint-tile) {
       width: $tile-content-container-width-medium;
@@ -272,14 +271,20 @@
 
   &__replay-btn {
     position: absolute;
-    right: 0;
-    top: calc(100% + #{$gutter});
+    right: $gutter;
+    bottom: $gutter;
     border-width: 0;
     background-color: transparent;
     cursor: pointer;
     color: $color-font-body;
     padding: 10px;
     border-radius: 10px;
+
+    @include bp($breakpoint-tile) {
+      top: calc(100% + #{$gutter});
+      right: 0;
+      bottom: unset;
+    }
 
     &__icon {
       width: 1.5em;
