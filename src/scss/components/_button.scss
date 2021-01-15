@@ -1,0 +1,14 @@
+.button {
+  $outline-offset: 5px;
+  $outline: 2px dashed currentColor;
+  outline-offset: $outline-offset;
+
+  &:focus {
+    outline: $outline;
+  }
+
+  // Hide focus ring when using a mouse
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}

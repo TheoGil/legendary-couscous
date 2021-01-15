@@ -7,6 +7,7 @@ $color-font-headings: #272343;
 $color-font-body: #2d334a;
 $color-placeholder: #e3f6f5;
 $color-surface-button: #ffd803;
+$color-surface-button-active: darken($color-surface-button, 5%);
 $color-font-button: $color-font-headings;
 $color-tile-placeholder: $color-white;
 $color-tile-blob-default: #eff0f3;

@@ -130,6 +130,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    z-index: 1; // Prevent the cta pseudo element from disapearing behind the blob SVG
 
     @include bp($breakpoint-tile) {
       width: $tile-content-container-width-medium;
@@ -155,6 +156,8 @@
   }
 
   &__cta {
+    $cta-border-radius: 10px;
+    display: inline-block;
     position: relative;
     padding: 10px calc(25px + 3em) 10px 25px;
     background-color: $color-surface-button;
@@ -163,7 +166,26 @@
     text-transform: uppercase;
     cursor: pointer;
     border: 1px currentColor solid;
-    border-radius: 10px;
+    border-radius: $cta-border-radius;
+
+    &::before,
+    &::after {
+      @include pseudo-cover;
+      z-index: -8;
+      display: block;
+      border-radius: $cta-border-radius;
+      transition: transform 100ms ease-in;
+    }
+
+    &::before {
+      background-color: currentColor;
+    }
+
+    &::after {
+      // Applying transforms on the parent element causes stacking issues, making ::before appearing in front of the background
+      // I'm fixing this by using the ::after to act as the button background
+      background-color: $color-surface-button;
+    }
 
     &__icon {
       position: absolute;
@@ -171,19 +193,43 @@
       top: -0.75em;
     }
 
+    &:hover {
+      &::before {
+        transition-timing-function: ease-out;
+        transform: translate(-5px, 5px);
+      }
+    }
+
     &:active {
+      background-color: $color-surface-button-active;
+
+      .can-lid__strip {
+        fill: $color-surface-button-active;
+      }
+
+      .can-lid__closed-hole {
+        fill: $color-surface-button-active;
+      }
+    }
+
+    /*
+    // ON CLICK VIA JS
+    &:focus {
       .can-lid__strip {
         transform: scaleY(0.75);
+        fill: $color-surface-button-active;
       }
 
       .can-lid__closed-hole {
         transform: scaleY(0.5);
+        fill: $color-surface-button-active;
       }
 
       .can-lid__line {
         transform: rotate(var(--rotation)) scaleX(1);
       }
     }
+    */
   }
 
   &__background {
@@ -216,12 +262,19 @@
     border-width: 0;
     background-color: transparent;
     cursor: pointer;
+    color: $color-font-body;
+    padding: 10px;
+    border-radius: 10px;
 
     &__icon {
       width: 2em;
       height: 2em;
-      fill: $color-font-body;
+      fill: currentColor;
       transition: transform 0.25s ease-in;
+    }
+
+    &:hover {
+      background-color: transparentize($color-font-body, 0.9);
     }
 
     &:hover,
