@@ -212,6 +212,8 @@ class Tile {
         .timeScale(2)
         .reverse()
         .then(() => {
+          this.replayBtnEl.blur();
+
           if (prefersReducedMotion()) {
             this.animation.progress(1);
           } else {
