@@ -26,7 +26,7 @@ class Tile {
     this.CTAEl = this.containerEl.querySelector(".js-cta");
     this.canEl = this.containerEl.querySelector(".js-can");
     this.labelEl = this.containerEl.querySelector(".js-can-label");
-    this.particlesEls = this.containerEl.querySelectorAll(".js-particle");
+    this.ingredientsEls = this.containerEl.querySelectorAll(".js-ingredient");
     this.replayBtnEl = this.containerEl.querySelector(".js-replay-btn");
 
     // Helper wrapper that will handle the background blob animation
@@ -156,9 +156,9 @@ class Tile {
       "<.1" // Relative to the start of the most recently-added animation
     );
 
-    // Animate in the "particles"
+    // Animate in the ingredients
     this.animation.from(
-      this.particlesEls,
+      this.ingredientsEls,
       {
         x: 0,
         y: 0,
