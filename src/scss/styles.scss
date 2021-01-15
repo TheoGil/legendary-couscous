@@ -4,8 +4,7 @@
 @import "./abstract/grid";
 @import "./abstract/base";
 @import "./abstract/helpers";
-@import "./components/tile/list";
-@import "./components/tile/placeholder";
-@import "./components/tile/content";
-@import "./components/tile/visual";
 @import "./components/intro";
+@import "./components/tile";
+@import "./components/tile-list";
+@import "./components/can_lid";
