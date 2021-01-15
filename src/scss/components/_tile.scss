@@ -219,7 +219,11 @@
     }
 
     &:active {
-      background-color: $color-surface-button-active;
+      &::after {
+        // Applying transforms on the parent element causes stacking issues, making ::before appearing in front of the background
+        // I'm fixing this by using the ::after to act as the button background
+        background-color: $color-surface-button-active;
+      }
 
       .can-lid__strip {
         fill: $color-surface-button-active;
