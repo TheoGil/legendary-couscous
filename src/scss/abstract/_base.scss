@@ -5,3 +5,7 @@ body {
   color: $color-font-body;
   overflow-x: hidden; // Prevent the animated tile elements from adding a vertical scrollbar
 }
+
+::selection {
+  background: $color-surface-button;
+}
