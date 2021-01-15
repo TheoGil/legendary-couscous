@@ -87,6 +87,32 @@ src/
     └── abstract/
 ```
 
+# Known issues
+
+- Animation of the ingredients is broken when replaying the animation after resizing the window because the from values are computed using the initial dimensions of the ingredients.
+
+  - Potential fix : recompute the from values at every run of the animation.
+
+## Potential issues
+
+- The position of the ingredients as well as the position of the label are defined within the SCSS files. This will work well for static content but if the content is managed via a CMS, a solution that allows the maintainer to adjust those value without having to modifiy the actual CSS codebase should be implemented. A wysiwyg editor for exemple.
+
+- The faked 3D rotation of the can is not physicaly accurate AT ALL. It think that it is an acceptable solution for this design but it could use some improvements. A slightly curved clip-path at the top and the bottom of the label could enhance the effect.
+
+- Splitted words might break in the middle of the word on smaller screens. This will also break the text reveal effect.
+
+  - Potential fix n°1: use text ellipsis to avoid 2 lines words. Not great because it might make the product name unreadable
+
+  - Potential fix n°2: wrap every `.character` into an additional `overflow: hidden` wrapper. This will fix the text reveal effect. Not great because it introduce a LOT of additional markup and we still have the "broken product name" issue.
+
+  - Potential fix n°3: reduce the font size until every word can fit into one line. This is the best solution for static content. But not ideal because the font size will have to be updated everytime a product with a longer word is added.
+
+## Ideas that didn't make the cut
+
+- Use the animated svg background as a mask that reveal a canvas with a lot of particles inside to remind of the beer bubbles ([Something like that](https://codepen.io/theo-gil/pen/aKgQzM)).
+
+- Make some foam come out of the lid when clicking the button.
+
 ## Credits
 
 App has been scaffolded with [createapp.dev](https://createapp.dev/).
