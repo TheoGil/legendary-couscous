@@ -1,5 +1,7 @@
-.clip {
-  display: block;
+// Splitting.js automatically adds a wrapper around the letters.
+// Might as well take advantage of it.
+.word {
+  display: inline-block;
   overflow: hidden;
 }
 
