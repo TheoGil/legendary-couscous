@@ -37,10 +37,10 @@ class Tile {
 
     this.replayBtnEl.addEventListener("click", this.replay);
 
-    this.initStartAnimation();
+    this.initAnimation();
   }
 
-  initStartAnimation() {
+  initAnimation() {
     // Define the various animations
     this.animation = new gsap.timeline({
       paused: true,
@@ -105,6 +105,7 @@ class Tile {
       },
       "start"
     );
+
     // Animate title characters individually
     this.animation.fromTo(
       this.splitting[0].chars,
