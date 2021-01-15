@@ -1,9 +1,9 @@
 .tile {
   width: 100%;
-  min-height: 300px;
 
   &--placeholder {
     background-color: $color-placeholder;
+    padding-top: 100%;
   }
 
   &--fullwidth {
