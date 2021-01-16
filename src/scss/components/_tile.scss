@@ -152,6 +152,12 @@
     font-size: $font-size-tile-title;
     line-height: 1;
     margin: 0 0 0.25em 0;
+
+    // Prevent words from being broken on smaller screens.
+    // Warning: this can cause unwanted X overflow
+    .word {
+      white-space: nowrap;
+    }
   }
 
   &__subtitle {
