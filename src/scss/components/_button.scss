@@ -3,8 +3,12 @@
   $outline: 2px dashed currentColor;
   outline-offset: $outline-offset;
 
-  &:focus {
-    outline: $outline;
+  // Only display focus-ring on hover-capable devices with an accurate pointing device
+  // In other words, hide it on smartphones and tablets.
+  @media (hover: hover) and (pointer: fine) {
+    &:focus {
+      outline: $outline;
+    }
   }
 
   // Hide focus ring when using a mouse
