@@ -66,6 +66,15 @@ Splitting.js is used to split text into individually animatable characters.
 ```
 src/
 │
+│   // This folder doesn't actually contains the documentation but a build that will be used by Github for the live version
+├── docs/
+│
+├── audio/ // Audio files
+│
+├── fonts/ // Fonts
+│
+├── img/ // Images
+│
 ├── js/
 │   │   // Main entry file
 │   ├── index.js
@@ -93,11 +102,15 @@ src/
 
   - Potential fix : recompute the from values at every run of the animation.
 
+- The faked 3D rotation of the can is not physicaly accurate AT ALL. Not really an issue as it is a volontary design decision.
+
+  - Alternative n°1: Use 3D. That could look great but would have a significant impact on performance.
+
+  - Alternative n°2: Ditch completely the fake 3D rotation, and apply a simple X translation to an actual photograph of the beer can. Would be really straightforward to implement but not as fun as the actual animation in my opinion.
+
 ## Potential issues
 
 - The position of the ingredients as well as the position of the label are defined within the SCSS files. This will work well for static content but if the content is managed via a CMS, a solution that allows the maintainer to adjust those value without having to modifiy the actual CSS codebase should be implemented. A wysiwyg editor for exemple.
-
-- The faked 3D rotation of the can is not physicaly accurate AT ALL. It think that it is an acceptable solution for this design but it could use some improvements. A slightly curved clip-path at the top and the bottom of the label could enhance the effect.
 
 - Splitted words might break in the middle of the word on smaller screens. This will also break the text reveal effect.
 
