@@ -67,6 +67,7 @@
           transform: translateY(
             15%
           ); // Tricky to get right, tweak manually until looks right.
+          clip-path: url(#beer-label-clippath);
 
           &:before {
             @include pseudo-cover;
