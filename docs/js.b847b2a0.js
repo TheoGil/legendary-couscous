@@ -25,4 +25,4 @@ module.exports="can-opening.e4588d1c.mp3";
 },{"./Tile":"PoO7"}],"QvaY":[function(require,module,exports) {
 "use strict";require("./../scss/styles.scss");var e=t(require("./components/TileFactory"));function t(e){return e&&e.__esModule?e:{default:e}}var s=new e.default,o=document.querySelector(".js-toggle-sound");o.addEventListener("click",function(){o.classList.toggle("toggle-sound-button--muted"),s.onToggleSound()});
 },{"./../scss/styles.scss":"mAbx","./components/TileFactory":"sfWU"}]},{},["QvaY"], null)
-//# sourceMappingURL=js.5eb7764a.js.map
+//# sourceMappingURL=js.b847b2a0.js.map
