@@ -8,6 +8,8 @@ I choosed to use build an animated tile that showcase Omnipollo's Beers.
 
 Omnipollo's beers are known for their funky, bold and hype style. Building a design around those traits give me a good opportunity to have fun with the animations.
 
+About the repo name, Github suggested that name for the repo and I thought it was fun.
+
 ## Online version
 
 [https://theogil.github.io/legendary-couscous/](https://theogil.github.io/legendary-couscous/)
@@ -57,7 +59,7 @@ SCSS because it is awesome.
 
 I delegate code style handling to Prettier (here using it's default settings). As long as it is consistent trough the project, I do not care _that much_ about code style.
 
-GSAP is used to build and control animations.
+I use CSS animations and transitions as much as possible and GSAP for more complex animations sequences or controls.
 
 Splitting.js is used to split text into individually animatable characters.
 
@@ -100,7 +102,7 @@ src/
 
 - Animation of the ingredients is broken when replaying the animation after resizing the window because the from values are computed using the initial dimensions of the ingredients.
 
-  - Potential fix : recompute the from values at every run of the animation.
+  - Potential fix : recompute the `from` values at every run of the animation.
 
 - The faked 3D rotation of the can is not physicaly accurate AT ALL. Not really an issue as it is a volontary design decision.
 
